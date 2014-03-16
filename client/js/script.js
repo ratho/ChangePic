@@ -84,6 +84,9 @@ function loadpath (bereich) {
 }
 
 function reloadPicture() {
-	$('#pic-tierpark').attr("src",jQuery.jStorage.get("tierpark"));
-	$('#pic-klettern').attr("src",jQuery.jStorage.get("klettern"));
+	$('#pic-tierpark').attr("src",jQuery.jStorage.get("tierpark")+"?"+(new Date()));
+	$('#pic-klettern').attr("src",jQuery.jStorage.get("klettern")+"?"+(new Date()));
+	$('#text-server').val($.jStorage.get("server"));
+	$('#path-tierpark').html($.jStorage.get("tierpark"));
+	$('#path-klettern').html($.jStorage.get("klettern"));
 }
