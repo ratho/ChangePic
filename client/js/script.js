@@ -10,6 +10,7 @@ $( document ).ready(function() {
 		//alert ($('#text-password').val());
 		//alert ($().crypt({method:"md5",source:$("#text-password").val()})); 
 		jQuery.jStorage.set("password-md5", $().crypt({method:"md5",source:$("#text-password").val()}));
+		jQuery.jStorage.set("server", $('#text-server').val());
 	});
 	
 	$('#tierpark-open').click(function(){
@@ -44,6 +45,7 @@ $( document ).ready(function() {
 
 function updatePicture (bereich, offen) {
 	var password = jQuery.jStorage.get("password-md5");
+	var server = jQuery.jStorage.get("server");
 	//alert (bereich + " - " + offen + " - " + password);
 	event.preventDefault();
 	
@@ -51,7 +53,7 @@ function updatePicture (bereich, offen) {
 	
 	$.ajax({
 		type: 'POST',
-		url: '../server/ajax.php',
+		url: server + 'ajax.php',
 		data: data,
 		cache: false,
 		success: function (html) {
@@ -63,13 +65,14 @@ function updatePicture (bereich, offen) {
 
 function loadpath (bereich) {
 	var password = jQuery.jStorage.get("password-md5");
+	var server = jQuery.jStorage.get("server");
 	event.preventDefault();
 	
 	var data = 'pw=' + password + '&b=' + bereich;
 
 	$.ajax({
 		type: 'POST',
-		url: '../server/data.php',
+		url: server + 'data.php',
 		data: data,
 		cache: false,
 		success: function (html) {
