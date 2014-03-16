@@ -1,24 +1,42 @@
 <?php
+
+
+
 class ajaxValidate {
 
 	function formValidate() {
-		//Put form elements into post variables (this is where you would sanitize your data)
-		$field1 = @$_POST['field1'];
+		
+		require 'config.php';	
+		
+		$return = "Error";
+		$pw = @$_POST['pw'];
+		$bereich = @$_POST['b'];
+		$offen = @$_POST['o'];
 
-		//Establish values that will be returned via ajax
-		$return = array();
-		$return['msg'] = '';
-		$return['error'] = false;
-
-		//Begin form validation functionality
-		if (!isset($field1) || empty($field1)){
-			$return['error'] = true;
-			$return['msg'] .= '<li>Error: Field1 is empty.</li>';
+		if($pass == $pw && $bereich == 'klettern' && $offen == 'closed') 
+		{
+			if (copy($path.$file_kletter_closed, $path.$file_kletter_target)) {
+			    $return = "OK";
+			}
+		}		
+		if($pass == $pw && $bereich == 'klettern' && $offen == 'open') 
+		{
+			if (copy($path.$file_kletter_open, $path.$file_kletter_target)) {
+			    $return = "OK";
+			}
 		}
-
-		//Begin form success functionality
-		if ($return['error'] === false){
-			$return['msg'] = '<li>Success Message</li>';
+			
+		if($pass == $pw && $bereich == 'tierpark' && $offen == 'closed') 
+		{
+			if (copy($path.$file_park_closed, $path.$file_park_target)) {
+			    $return = "OK";
+			}
+		}	
+		if($pass == $pw && $bereich == 'tierpark' && $offen == 'open') 
+		{
+			if (copy($path.$file_park_open, $path.$file_park_target)) {
+			    $return = "OK";
+			}
 		}
 
 		//Return json encoded results

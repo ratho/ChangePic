@@ -1,32 +1,77 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Ajax Example</title>
-	<script type="text/javascript" src="jquery.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ChangePic</title>
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.2.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	<script src="js/jquery.crypt.js"></script>
+	<script src="js/jstorage.js"></script>
+	<script src="js/script.js"></script>
 </head>
 <body>
-	<ul id="info1">
-		<li>Put anything in the field below.</li>
-	</ul>
-	<form id="form1">
-		<input type="text" name="field1" id="field1">
-		<input type="submit" name="submit" id="submit" value="Submit Form">
-	</form>
-	<script>
-	$('#form1').submit(function(event) {
-		event.preventDefault();
-		$.ajax({
-			type: 'POST',
-			url: 'ajax.php',
-			data: $(this).serialize(),
-			dataType: 'json',
-			success: function (data) {
-				console.log(data);
-				$('#info1').html(data.msg);
-			}
-		});
-	});
-	</script>
+	
+	<div data-role="page" id="home">
+
+		<div data-role="header">
+			<h1>ChangePic</h1>
+	    	<a href="#settings" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+		</div>
+		<div role="main" class="ui-content">
+			<p>Bild Tierpark</p>
+			<p>
+				<img src="" id="pic-tierpark" />
+			</p>
+			<p>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="index.html" data-role="button" data-icon="check" id="tierpark-open">open</a>
+					<a href="index.html" data-role="button" data-icon="delete" id="tierpark-closed">closed</a>
+				</div>
+			</p>
+			<div id="tierpark"></div>
+			<p>Bild Kletterpark</p>
+			<p>
+				<img src="" id="pic-klettern" />
+			</p>
+			<p>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a href="index.html" data-role="button" data-icon="check" id="klettern-open">open</a>
+					<a href="index.html" data-role="button" data-icon="delete" id="klettern-closed">closed</a>
+				</div>
+			</p>
+			<div id="klettern"></div>
+		</div><!-- /content -->
+	
+		<div data-role="footer">
+			<h3>ccc-raab.com</h3>
+		</div><!-- /footer -->
+
+	</div><!-- /page -->
+	
+	<div data-role="page" id="settings">
+
+		<div data-role="header">
+		    <a href="#home" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</a>
+			<h1>Set account</h1>
+		    <button class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check" id="submit">Save</button>
+		</div>
+		<div role="main" class="ui-content">
+			<label for="text-basic">Passwort:</label>
+			<input type="password" name="text-password" id="text-password" value="">
+			<button id="load-path-tierpark">Load Tierpark</button>
+			<div id="path-tierpark"></div>
+			<button id="load-path-klettern">Load Kletterwald</button>
+			<div id="path-klettern"></div>
+			<button id="delete">clear local store</button>
+		</div><!-- /content -->
+	
+		<div data-role="footer">
+			<h3>ccc-raab.com</h3>
+		</div><!-- /footer -->
+
+	</div><!-- /page -->
+	
 </body>
 </html>
